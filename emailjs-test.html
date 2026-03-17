@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EmailJS Test</title>
+</head>
+<body>
+    <h1>EmailJS Test Page</h1>
+    <p>Use this to test if EmailJS is working correctly.</p>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("W6aP8nKQ6eF3xJ5sT9h");
+            
+            document.getElementById('test-btn').addEventListener('click', function() {
+                console.log('Testing EmailJS...');
+                
+                emailjs.send("service_7us47gn", "template_h1m7p6s", {
+                    to_email: "tuyishimegloire08@gmail.com",
+                    user_name: "Test User",
+                    otp_code: "TEST123",
+                    verification_link: "http://localhost:5173/email-verification"
+                }).then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    alert('Email sent successfully!');
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    alert('Failed to send email: ' + JSON.stringify(error));
+                });
+            });
+        })();
+    </script>
+    
+    <button id="test-btn">Test EmailJS</button>
+</body>
+</html>
